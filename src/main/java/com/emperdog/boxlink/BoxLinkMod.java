@@ -9,7 +9,6 @@ import com.cobblemon.mod.common.item.group.CobblemonItemGroups;
 import com.cobblemon.mod.common.net.messages.client.storage.pc.OpenPCPacket;
 import com.emperdog.boxlink.item.BoxLinkItem;
 import com.emperdog.boxlink.network.RequestOpenPCPacket;
-import net.minecraft.client.KeyMapping;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -17,7 +16,6 @@ import net.neoforged.fml.ModList;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -32,6 +30,8 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import static com.emperdog.boxlink.BoxLinkClientEventHandler.openPCKey;
 
 @Mod(BoxLinkMod.MODID)
 public class BoxLinkMod
@@ -48,9 +48,6 @@ public class BoxLinkMod
 
     public static final DeferredItem<Item> BOX_LINK_ITEM = ITEMS.register("box_link",
             () -> new BoxLinkItem(new Item.Properties()));
-
-    public static KeyMapping openPCKey =
-            new KeyMapping("key.cobblemonboxlink.open_pc.desc", GLFW.GLFW_KEY_BACKSLASH, "key.cobblemonboxlink.category");
 
     public BoxLinkMod(IEventBus modEventBus, ModContainer modContainer)
     {

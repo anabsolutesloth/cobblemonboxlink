@@ -1,16 +1,21 @@
 package com.emperdog.boxlink;
 
 import com.emperdog.boxlink.network.RequestOpenPCPacket;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
+import org.lwjgl.glfw.GLFW;
 
 public class BoxLinkClientEventHandler {
 
+    public static KeyMapping openPCKey =
+            new KeyMapping("key.cobblemonboxlink.open_pc.desc", GLFW.GLFW_KEY_BACKSLASH, "key.cobblemonboxlink.category");
+
     @SubscribeEvent
     public void onClientTick(ClientTickEvent.Post event) {
-        if(BoxLinkMod.openPCKey.consumeClick() && Minecraft.getInstance().isWindowActive())
+        if(openPCKey.consumeClick() && Minecraft.getInstance().isWindowActive())
             PacketDistributor.sendToServer(new RequestOpenPCPacket(Minecraft.getInstance().getUser().getProfileId()));
     }
 }
