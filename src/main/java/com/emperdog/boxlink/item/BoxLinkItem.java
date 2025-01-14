@@ -11,7 +11,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import com.cobblemon.mod.common.util.PlayerExtensionsKt;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -26,11 +25,6 @@ public class BoxLinkItem extends Item {
         ItemStack itemstack = player.getItemInHand(usedHand);
         if(!level.isClientSide) {
             if(player instanceof ServerPlayer serverPlayer) {
-                if(PlayerExtensionsKt.isInBattle(serverPlayer)) {
-                    player.sendSystemMessage(Component.translatable("cobblemon.pc.inbattle").withColor(0xFF0000));
-                    return InteractionResultHolder.success(itemstack);
-                }
-
                 BoxLinkMod.openPCStorage(serverPlayer);
 
                 return InteractionResultHolder.success(itemstack);

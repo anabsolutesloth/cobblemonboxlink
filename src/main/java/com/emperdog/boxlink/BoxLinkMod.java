@@ -7,8 +7,10 @@ import com.cobblemon.mod.common.api.storage.pc.link.PCLink;
 import com.cobblemon.mod.common.api.storage.pc.link.PCLinkManager;
 import com.cobblemon.mod.common.item.group.CobblemonItemGroups;
 import com.cobblemon.mod.common.net.messages.client.storage.pc.OpenPCPacket;
+import com.cobblemon.mod.common.util.PlayerExtensionsKt;
 import com.emperdog.boxlink.item.BoxLinkItem;
 import com.emperdog.boxlink.network.RequestOpenPCPacket;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -68,6 +70,11 @@ public class BoxLinkMod
 
     // Function to open the Player's PC Storage and allow them to modify it.
     public static void openPCStorage(ServerPlayer player) {
+        if(PlayerExtensionsKt.isInBattle(player)) {
+            player.sendSystemMessage(Component.translatable("cobblemon.pc.inbattle").withColor(0xFF0000));
+            return;
+        }
+
         PCStore pc = Cobblemon.INSTANCE.getStorage().getPC(player);
         PCLinkManager.INSTANCE.addLink(new PCLink(pc, player.getUUID()));
         player.level().playSound(null, player.blockPosition(), CobblemonSounds.PC_ON, SoundSource.NEUTRAL, 0.5f, 1.0f);
