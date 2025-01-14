@@ -1,6 +1,7 @@
 {
   "item.cobblemonboxlink.box_link": "Box Link",
   "item.cobblemonboxlink.box_link.desc": "Used to access your PC Storage System remotely at any time, from anywhere.",
+  "item.cobblemonboxlink.box_link.desc2": "Press '%s' to open the PC.",
 
   "key.cobblemonboxlink.category": "Cobblemon Box Link",
   "key.cobblemonboxlink.open_pc.desc": "Open PC Storage",

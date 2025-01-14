@@ -43,6 +43,9 @@ public class BoxLinkItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         tooltipComponents.add(Component.translatable("item.cobblemonboxlink.box_link.desc").withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("item.cobblemonboxlink.box_link.desc2",
+                        Component.keybind("key.cobblemonboxlink.open_pc.desc"))
+                .withStyle(ChatFormatting.YELLOW));
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 }
