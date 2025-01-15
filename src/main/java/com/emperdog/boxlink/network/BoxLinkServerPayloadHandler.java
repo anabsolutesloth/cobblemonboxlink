@@ -23,9 +23,6 @@ public class BoxLinkServerPayloadHandler {
         ServerPlayer player = (ServerPlayer) context.player();
         Inventory playerInventory = player.getInventory();
 
-        BoxLinkMod.LOGGER.info("received RequestOpenPCPacket from {} with data UUID {}", player.getUUID(), data.uuid());
-
-        BoxLinkMod.LOGGER.info("boxLinkBindRequiresItem: {}", BoxLinkConfig.boxLinkBindRequiresItem);
         if(player.getUUID().equals(data.uuid())) {
             // skip search logic and immediately open PC if item is not required.
             if(BoxLinkConfig.boxLinkBindRequiresItem) {
