@@ -16,6 +16,7 @@ import net.minecraft.sounds.SoundSource;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
@@ -45,6 +46,8 @@ public class BoxLinkMod
 
     public static final boolean curiosLoaded = ModList.get().isLoaded("curios");
 
+    public static final String OPEN_PC_KEY_NAME = "key.cobblemonboxlink.open_pc.desc";
+
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
 
@@ -57,6 +60,8 @@ public class BoxLinkMod
 
         modEventBus.addListener(RequestOpenPCPacket::register);
 
+        modEventBus.addListener(this::commonSetup);
+
         modEventBus.addListener(this::addCreative);
 
         modContainer.registerConfig(ModConfig.Type.SERVER, BoxLinkConfig.SPEC);
@@ -66,6 +71,10 @@ public class BoxLinkMod
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CobblemonItemGroups.getUTILITY_ITEMS_KEY())
             event.accept(BOX_LINK_ITEM);
+    }
+
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        NeoForge.EVENT_BUS.register(new BoxLinkServerEventHandler());
     }
 
     // Function to open the Player's PC Storage and allow them to modify it.

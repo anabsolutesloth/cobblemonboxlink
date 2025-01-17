@@ -11,7 +11,7 @@ import org.lwjgl.glfw.GLFW;
 public class BoxLinkClientEventHandler {
 
     public static KeyMapping openPCKey =
-            new KeyMapping("key.cobblemonboxlink.open_pc.desc", GLFW.GLFW_KEY_BACKSLASH, "key.cobblemonboxlink.category");
+            new KeyMapping(BoxLinkMod.OPEN_PC_KEY_NAME, GLFW.GLFW_KEY_BACKSLASH, "key.cobblemonboxlink.category");
 
     @SubscribeEvent
     public void onClientTick(ClientTickEvent.Post event) {
