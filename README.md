@@ -1,3 +1,6 @@
+## INACTIVE, Please see https://github.com/anabsolutesloth/cobblemonboxlink-multiloader
+
+
 ## Cobblemon Box Link
 A simple Cobblemon sidemod which adds the Box Link from modern Pokemon games into Cobblemon, allowing quick and easy access to your PC Storage.
 
